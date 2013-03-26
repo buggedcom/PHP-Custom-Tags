@@ -2,6 +2,8 @@
 
 Allows you to create HTML custom tags that aids in templating and providing easy to use extendable functionality that designers find easy to work with. Create completely customisable tags and even comes with a simple internal templating engine.
 
+Tags can also be collected and processed in bulk, which can be usefull when optimising performance of database queries and other such junk.
+
 ##An Example Custom Tag.
 
 ```html
