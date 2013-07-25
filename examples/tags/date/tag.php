@@ -1,5 +1,7 @@
 <?php
 
+    namespace CustomTags;
+
 	function ct_date($tags, $source)
 	{
 // 		loop through all the tags and capture the block source and the 

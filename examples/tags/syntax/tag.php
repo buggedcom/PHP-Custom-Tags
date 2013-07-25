@@ -1,5 +1,7 @@
 <?php
 
+    namespace CustomTags;
+
 	function ct_syntax($tags, $source)
 	{
 // 		add the required scripts

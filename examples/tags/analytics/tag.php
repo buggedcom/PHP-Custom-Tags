@@ -1,5 +1,7 @@
 <?php
 
+    namespace CustomTags;
+
 	/**
 	 * Analytics Block
 	 *

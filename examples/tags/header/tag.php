@@ -1,5 +1,7 @@
 <?php
 
+    namespace CustomTags;
+
 	function ct_header($tag)
 	{
 		return nl2br('<a class="backtotop" href="./index.php">&larr; Back to index</a>

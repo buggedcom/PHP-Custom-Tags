@@ -1,5 +1,7 @@
 <?php
 
+    namespace CustomTags;
+
 	/**
 	 * Inspired by a smarty plugin.
 	 * http://www.andrefiedler.de/smartyplugins/outputfilter.highlight_search_words.txt

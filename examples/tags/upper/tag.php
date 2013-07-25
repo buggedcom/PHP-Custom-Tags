@@ -1,5 +1,7 @@
 <?php
 
+    namespace CustomTags;
+
 	function ct_upper($tag)
 	{
 		switch(strtolower($tag['attributes']['type']))

@@ -1,5 +1,7 @@
 <?php
 
+    namespace CustomTags;
+
 	ini_set('error_reporting', E_ALL);
 	ini_set('track_errors', '1');
 	ini_set('display_errors', '1');
@@ -13,7 +15,7 @@
 		exit;
 	}
 
-	require_once dirname($current_dir).DIRECTORY_SEPARATOR.'customtags.php';
+	require_once dirname($current_dir).DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'CustomTags.php';
 	
 	$ct = new CustomTags(array(
 		'parse_on_shutdown' => true,

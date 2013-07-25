@@ -1,0 +1,21 @@
+{
+    "name": "buggedcom/customtags",
+    "description": "Allows you to create HTML custom tags that aids in templating and providing easy to use extendable functionality that designers find easy to work with.",
+    "keywords": ["html","tags","custom-tags","custom tags","markup"],
+    "license": ["MIT"],
+    "authors": [
+        {
+            "name": "Oliver Lillie",
+            "email": "ollie@buggedcom.co.uk",
+			"role": "Freelance/Lead Developer"
+        }
+	],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "PHPVideoToolkit": "lib/"
+        }
+    }
+}
