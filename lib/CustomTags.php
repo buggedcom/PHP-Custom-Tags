@@ -786,7 +786,7 @@
     /**
      * The Custom Tags exception.
      */
-    class CustomTagsException extends Exception { }
+    class CustomTagsException extends \Exception { }
     
     /**
      * The Custom Tags Helper class, It can help in making small custom tags,
