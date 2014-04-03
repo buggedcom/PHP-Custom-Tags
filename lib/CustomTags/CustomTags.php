@@ -456,15 +456,15 @@
                             }
                             else
                             {   
-								if(isset($tags[$tag_index]['block']) === true)
-								{
-	                                $block = preg_replace('/ delayed="true"/', '', $tags[$tag_index]['block'], 1);
-	                                if(isset($tag['block']) === true)
-	                                {
-	                                    $tag['block'] = str_replace($containers[$key2], $block, $tag['block']); 
-	                                }
-	                                $tag['content'] = str_replace($containers[$key2], $block, $tag['content']); 
-								}
+                                if(isset($tags[$tag_index]['block']) === true)
+                                {
+                                    $block = preg_replace('/ delayed="true"/', '', $tags[$tag_index]['block'], 1);
+                                    if(isset($tag['block']) === true)
+                                    {
+                                        $tag['block'] = str_replace($containers[$key2], $block, $tag['block']); 
+                                    }
+                                    $tag['content'] = str_replace($containers[$key2], $block, $tag['content']); 
+                                }
                             }
                         }
                         $tags[$key]['buried_source_markers'] = $tag['buried_source_markers'] = $containers;
@@ -762,7 +762,7 @@
                         }
                         if(isset($tag['attributes']['template']) === true)
                         {                                             
-                            $template = $this->_options['template_directory'].$tag['name'].DS.$tag['attributes']['template'].'.html';
+                            $template = $this->_options['template_directory'].$tag['name'].DIRECTORY_SEPARATOR.$tag['attributes']['template'].'.html';
                             if(is_file($template) === false)
                             {                                 
 //                                $tag['attributes']['template'] = false;
