@@ -1,13 +1,5 @@
 <?php
 
-    /* SVN FILE: $Id$ */
-// print_r(debug_backtrace());exit;
-
-//  ini_set('error_reporting', E_ALL);
-//  ini_set('track_errors', '1');
-//  ini_set('display_errors', '1');
-//  ini_set('display_startup_errors', '1');
-
     /**
      * @author Oliver Lillie (aka buggedcom) <publicmail@buggedcom.co.uk>
      *
@@ -772,7 +764,7 @@
                         }
                         if(isset($tag['attributes']['template']) === true)
                         {                                             
-                            $template = $this->_options['template_directory'].$tag['name'].DS.$tag['attributes']['template'].'.html';
+                            $template = $this->_options['template_directory'].$tag['name'].DIRECTORY_SEPARATOR.$tag['attributes']['template'].'.html';
                             if(is_file($template) === false)
                             {                                 
 //                                $tag['attributes']['template'] = false;
