@@ -317,24 +317,34 @@
             $tag_order = false;
             if(function_exists($func_name) === false)
             {
-                if(is_file($this->_options['tag_directory'].$tag['name'].DIRECTORY_SEPARATOR.'tag.php') === true)
+                $has_resource = false;
+                if(is_array($this->_options['tag_directory']) === false)
                 {
-                    if(isset(self::$_required[$tag['name']]) === false)
+                    $this->_options['tag_directory'] = array($this->_options['tag_directory']);
+                }
+                foreach ($this->_options['tag_directory'] as $directory)
+                {
+                    $tag_file = rtrim($directory, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$tag['name'].DIRECTORY_SEPARATOR.'tag.php';
+                    if(is_file($tag_file) === true)
                     {
-                        self::$_required[$tag['name']] = true;
-                        $collect = false;
-                        if(function_exists($func_name) === false)
+                        if(isset(self::$_required[$tag['name']]) === false)
                         {
-                            include_once $this->_options['tag_directory'].$tag['name'].DIRECTORY_SEPARATOR.'tag.php';
-                        }
-                        self::$_tags_to_collect[$tag['name']] = $collect;
-                        if(function_exists($func_name) === false)
-                        {
-                            return self::throwError($tag['name'], 'tag resource found but callback "'.$func_name.'" wasn\'t.');
+                            self::$_required[$tag['name']] = true;
+                            $collect = false;
+                            if(function_exists($func_name) === false)
+                            {
+                                include_once $tag_file;
+                            }
+                            self::$_tags_to_collect[$tag['name']] = $collect;
+                            if(function_exists($func_name) === false)
+                            {
+                                return self::throwError($tag['name'], 'tag resource "'.$directory.DIRECTORY_SEPARATOR.'tag.php" found but callback "'.$func_name.'" wasn\'t.');
+                            }
+                            $has_resource = true;
                         }
                     }
                 }
-                else
+                if($has_resource === false)
                 {
                     return self::throwError($tag['name'], 'tag resource not found.');
                 } 
@@ -762,7 +772,7 @@
                         }
                         if(isset($tag['attributes']['template']) === true)
                         {                                             
-                            $template = $this->_options['template_directory'].$tag['name'].DIRECTORY_SEPARATOR.$tag['attributes']['template'].'.html';
+                            $template = $this->_options['template_directory'].$tag['name'].DS.$tag['attributes']['template'].'.html';
                             if(is_file($template) === false)
                             {                                 
 //                                $tag['attributes']['template'] = false;
@@ -804,12 +814,19 @@
         {
 //          get the template
             $template_name = isset($tag['attributes']['template']) === true ? $tag['attributes']['template'] : 'default';
-            $template = CustomTags::$tag_directory_base.$tag['name'].DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.$template_name.'.html';
-            if(is_file($template) === true)
+            if(is_array(CustomTags::$tag_directory_base) === false)
             {
-                return file_get_contents($template);
+                CustomTags::$tag_directory_base = array(CustomTags::$tag_directory_base);
             }
-//          template doesn't exit so produce error if required
+            foreach (CustomTags::$tag_directory_base as $directory)
+            {
+                $template = rtrim($directory, DIRECTORY_SEPARATOR).$tag['name'].DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.$template_name.'.html';
+                if(is_file($template) === true)
+                {
+                    return file_get_contents($template);
+                }
+            }
+//          template doesn't exist so produce error if required
             if($produce_error === true)
             {
                 CustomTags::throwError($tag['name'], 'tag template resource not found.');
